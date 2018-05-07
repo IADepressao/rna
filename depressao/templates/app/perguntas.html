@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <fieldset>
+      <div class="panel panel-info center">
+
+        <div class="panel-heading">
+          <h2 class="panel-title">Formulário</h1>
+        </div>
+        {% if error %}
+          <div class="card-panel">
+            <span class="red-text text-darken-2">CAMPO OBRIGATÓRIO NÃO PREENCHIDO</span>
+          </div>
+        {% endif %}
+
+        <div class="panel-body">
+          <form action="" method="POST">
+            {% csrf_token %}
+
+            <!-- Início do bloco das perguntas -->
+            <!-- Importante notar os grupos de pergutas, além do for no -->
+            <!-- label ter que coincidir com o id do input -->
+            <h5 class="light">Pergunta #1?</h5>
+              <input class="with-gap" name="p01" id="Pergunta01-1" type="radio" value="True"/>
+              <label for="Pergunta01-1">Sim</label>
+              <input class="with-gap" name="p01" id="Pergunta01-2" type="radio" value="False"/>
+              <label for="Pergunta01-2">Não</label>
+
+            <h5 class="light">Você tem depressão?</h5>
+              <input class="with-gap" name="p02" id="Pergunta02-1" type="radio" value="True"/>
+              <label for="Pergunta02-1">Sim</label>
+              <input class="with-gap" name="p02" id="Pergunta02-2" type="radio" value="False"/>
+              <label for="Pergunta02-2">Não</label>
+            <!-- Fim do bloco das perguntas -->
+
+            <br>
+            <br>
+            <br>
+
+            <button type="submit" class="btn-large waves-effect waves-light blue darken-3">Enviar
+              <i class="large material-icons right">send</i>
+            </button>
+            <button type="reset" class="btn-large waves-effect waves-light red darken-3">Limpar
+              <i class="large material-icons right">clear</i>
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+{% endblock %}

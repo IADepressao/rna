@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <fieldset>
+      <div class="panel panel-info center">
+        <div class="panel-heading">
+          <h1 class="panel-title">{{ message }}</h1>
+        </div>
+        <div class="panel-body">
+            <h6 class="light">App criado para detectar possíveis quadros de depressão, através de uma Rede Neural Artificial.</h6>
+        </div>
+        <br>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn-large waves-effect waves-light blue darken-3">Clique para Iniciar
+                <i class="large material-icons right">touch_app</i>
+            </button>
+          </form>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+{% endblock %}
