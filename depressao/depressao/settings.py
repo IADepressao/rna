@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     # depressao apps
     'base',
 
+    # misc
+    'django_extensions',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -114,9 +117,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
+
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -128,6 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR + '/collected_static/'
 STATICFILES_DIRS = (BASE_DIR + '/static/',)
@@ -135,3 +140,15 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+# Perguntas (depressão maior):
+
+# 1- você se sente triste ou tem um sentimento de vazio?
+# 2- sente uma perda de interesse  ou prazer em atividades diárias?
+# 3- você teve uma perda ou ganho de peso significativo nos últimos meses?
+# 4- você tem sofrido de insônia diariamente ou tem dormido mais do que geralmente precisa?
+# 5- você sente mais agitado ou mais lento do que normalmente?
+# 6- você sente que suas energias estão sendo esgotadas, mesmo que não faça muita coisa durante o dia?
+# 7- você se sente um inútil ou que nada do que faz importa?
+# 8- você tem problemas para se concentrar em alguma atividade?
+# 9- você tem pensamentos suicidas recorrentes?

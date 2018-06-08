@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^perguntas/$', views.perguntas, name='perguntas'),
     url(r'^resultados/$', views.resultados, name='resultados'),
+    url(r'^configuracoes/$', views.configuracoes, name='configuracoes'),
 ]
 
 if DEBUG:

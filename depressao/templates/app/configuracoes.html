@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <fieldset>
+      <div class="panel panel-info center">
+        <div class="panel-heading">
+          <h1 class="panel-title">Configurações de Execução</h1>
+        </div>
+        <div class="panel-body">
+            <h6 class="light">Página de configurações da aplicação.</h6>
+        </div>
+        <br>
+        <form action="" method="POST">
+          {% csrf_token %}
+            <button type="submit" name="submit" class="btn-large waves-effect waves-light blue darken-3">Confirmar
+              <i class="large material-icons right">check</i>
+            </button>
+            <button type="cancel" name="cancel" class="btn-large waves-effect waves-light red darken-3">Cancelar
+              <i class="large material-icons right">clear</i>
+            </button>
+        </form>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
+{% endblock %}
