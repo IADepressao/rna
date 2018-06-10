@@ -9,18 +9,62 @@
           <h1 class="panel-title">Configurações de Execução</h1>
         </div>
         <div class="panel-body">
-            <h6 class="light">Página de configurações da aplicação.</h6>
-        </div>
-        <br>
-        <form action="" method="POST">
-          {% csrf_token %}
+          <h6 class="light">Página de configurações da aplicação.</h6>
+          <br>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div id="col01" class="col s4"></div>
+              <div id="col02" class="col s4">
+                  <h5 class="light">Geral:</h5>
+                <p>
+                  <input type="checkbox" id="biaschk" name="bias" value="True"/>
+                  <label for="biaschk">Bias</label>
+                </p>
+                <p>
+                  <input type="checkbox" id="momentochk" name="momento" value="True"/>
+                  <label for="momentochk">Momento (Beta)</label>
+                </p>
+                <br>
+                  <h5 class="light">Função de Transferência:</h5>
+                <p>
+                  <input type="radio" id="ft01" class="with-gap" name="ft" value="SG" />
+                  <label for="ft01">Sigmóide</label>
+                </p>
+                <p>
+                  <input type="radio" id="ft02" class="with-gap" name="ft" value="TH" />
+                  <label for="ft02">Tangente Hiperbólica</label>
+                </p>
+                <br>
+                  <h5 class="light">Intervalos:</h5>
+                <p>
+                  <input type="radio" id="int01" class="with-gap" name="int" value="1" />
+                  <label for="int01">[0, 1]</label>
+                </p>
+                <p>
+                  <input type="radio" id="int02" class="with-gap" name="int" value="2" />
+                  <label for="int02">[-1, 0]</label>
+                </p>
+                <p>
+                  <input type="radio" id="int03" class="with-gap" name="int" value="3" />
+                  <label for="int03">[-1, 1]</label>
+                </p>
+                <p>
+                  <input type="radio" id="int04" class="with-gap" name="int" value="4" />
+                  <label for="int04">[-0.1, 0.1]</label>
+                </p>
+                <br>
+              </div>
+              <div id="col02" class="col s4"></div>
+            </div>
             <button type="submit" name="submit" class="btn-large waves-effect waves-light blue darken-3">Confirmar
               <i class="large material-icons right">check</i>
             </button>
             <button type="cancel" name="cancel" class="btn-large waves-effect waves-light red darken-3">Cancelar
               <i class="large material-icons right">clear</i>
             </button>
-        </form>
+          </form>
+        </div>
       </div>
     </fieldset>
   </div>

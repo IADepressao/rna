@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product, Configs
 import datetime
 import json
+import numpy as np
 import random
 
 def hello_msg():
@@ -15,6 +16,11 @@ def hello_msg():
         message = "Boa Noite!"
 
     return message
+
+def str2bool(v):
+    if v is None:
+        return False
+    return v.lower() in ("true", )
 
 def home(request):
     message = hello_msg()
@@ -34,7 +40,7 @@ def perguntas(request):
 
 def resultados(request):
     Product.objects.all().delete()
-    for n in range(10):
+    for n in range(30):
          p = Product()
          p.name = "Produto " + str(n)
          p.price = random.randint(1,30)
@@ -43,10 +49,16 @@ def resultados(request):
     queryset = Product.objects.all()
     names = [obj.name for obj in queryset]
     prices = [int(obj.price) for obj in queryset]
+    x = np.random.rand(5)
+    y = np.random.rand(5)
+    index = [i for i in range(5)]
 
     context = {
         'names': json.dumps(names),
         'prices': json.dumps(prices),
+        'x': json.dumps(x.tolist()),
+        'y': json.dumps(y.tolist()),
+        'index': json.dumps(index),
     }
     return render(request, 'app/resultados.html', context)
 
@@ -59,4 +71,10 @@ def configuracoes(request):
             return redirect('home')
         else:
             #update configs
+            configs = Configs.objects.get_or_create(id=1)[0]
+            configs.bias = str2bool(request.POST.get("bias"))
+            configs.momento = str2bool(request.POST.get("momento"))
+            configs.funcao_transferencia = request.POST.get("ft")
+            configs.intervalo = request.POST.get("int")
+            configs.save()
             return redirect('home')
