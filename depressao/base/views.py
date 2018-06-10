@@ -65,7 +65,14 @@ def resultados(request):
 
 def configuracoes(request):
     if request.method == 'GET':
-        return render(request, 'app/configuracoes.html')
+        configs = Configs.objects.get_or_create(pk=1)[0]
+        context = {
+            'bias': configs.bias,
+            'momento': configs.momento,
+            'ft': configs.funcao_transferencia,
+            'inter': configs.intervalo,
+        }
+        return render(request, 'app/configuracoes.html', context)
     if request.method == 'POST':
         if "cancel" in request.POST:
             return redirect('home')
@@ -75,6 +82,6 @@ def configuracoes(request):
             configs.bias = str2bool(request.POST.get("bias"))
             configs.momento = str2bool(request.POST.get("momento"))
             configs.funcao_transferencia = request.POST.get("ft")
-            configs.intervalo = request.POST.get("int")
+            configs.intervalo = request.POST.get("inter")
             configs.save()
             return redirect('home')

@@ -18,39 +18,39 @@
               <div id="col02" class="col s4">
                   <h5 class="light">Geral:</h5>
                 <p>
-                  <input type="checkbox" id="biaschk" name="bias" value="True"/>
+                  <input type="checkbox" id="biaschk" name="bias" value="True" {% if bias %} checked="checked" {% endif %} />
                   <label for="biaschk">Bias</label>
                 </p>
                 <p>
-                  <input type="checkbox" id="momentochk" name="momento" value="True"/>
+                  <input type="checkbox" id="momentochk" name="momento" value="True" {% if momento %} checked="checked" {% endif %} />
                   <label for="momentochk">Momento (Beta)</label>
                 </p>
                 <br>
                   <h5 class="light">Função de Transferência:</h5>
                 <p>
-                  <input type="radio" id="ft01" class="with-gap" name="ft" value="SG" />
+                  <input type="radio" id="ft01" class="with-gap" name="ft" value="SG" {% if ft == 'SG' %} checked="checked" {% endif %} />
                   <label for="ft01">Sigmóide</label>
                 </p>
                 <p>
-                  <input type="radio" id="ft02" class="with-gap" name="ft" value="TH" />
+                  <input type="radio" id="ft02" class="with-gap" name="ft" value="TH" {% if ft == 'TH' %} checked="checked" {% endif %} />
                   <label for="ft02">Tangente Hiperbólica</label>
                 </p>
                 <br>
                   <h5 class="light">Intervalos:</h5>
                 <p>
-                  <input type="radio" id="int01" class="with-gap" name="int" value="1" />
+                  <input type="radio" id="int01" class="with-gap" name="inter" value="1" {% if inter == "1" %} checked="checked" {% endif %} />
                   <label for="int01">[0, 1]</label>
                 </p>
                 <p>
-                  <input type="radio" id="int02" class="with-gap" name="int" value="2" />
+                  <input type="radio" id="int02" class="with-gap" name="inter" value="2" {% if inter == "2" %} checked="checked" {% endif %} />
                   <label for="int02">[-1, 0]</label>
                 </p>
                 <p>
-                  <input type="radio" id="int03" class="with-gap" name="int" value="3" />
+                  <input type="radio" id="int03" class="with-gap" name="inter" value="3" {% if inter == "3" %} checked="checked" {% endif %} />
                   <label for="int03">[-1, 1]</label>
                 </p>
                 <p>
-                  <input type="radio" id="int04" class="with-gap" name="int" value="4" />
+                  <input type="radio" id="int04" class="with-gap" name="inter" value="4" {% if inter == "4" %} checked="checked" {% endif %} />
                   <label for="int04">[-0.1, 0.1]</label>
                 </p>
                 <br>
