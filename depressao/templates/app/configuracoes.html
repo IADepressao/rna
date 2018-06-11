@@ -5,65 +5,114 @@
   <div class="row">
     <fieldset>
       <div class="panel panel-info center">
-        <div class="panel-heading">
-          <h1 class="panel-title">Configurações de Execução</h1>
+        <div class="col s12">
+          <ul class="tabs">
+            <div class="col s1"></div>
+            <li class="tab col s5"><a class="active" href="#configuracoes">Configurações</a></li>
+            <li class="tab col s5"><a href="#treinamento">Treinamento</a></li>
+          </ul>
+          <div class="col s1"></div>
         </div>
-        <div class="panel-body">
-          <h6 class="light">Página de configurações da aplicação.</h6>
-          <br>
-          <form action="" method="POST">
-            {% csrf_token %}
-            <div class="row">
-              <div id="col01" class="col s4"></div>
-              <div id="col02" class="col s4">
+
+        <!-- div de configurações da aplicação -->
+        <!-- início -->
+        <div id="configuracoes" class="col s12">
+          <div class="panel-heading">
+            <h3 class="panel-title">Configurações</h3>
+          </div>
+          <div class="panel-body">
+            <h6 class="light">Página de configurações da aplicação.</h6>
+            <br>
+            <form action="" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div id="col01" class="col s4"></div>
+                <div id="col02" class="col s4">
                   <h5 class="light">Geral:</h5>
-                <p>
-                  <input type="checkbox" id="biaschk" name="bias" value="True" {% if bias %} checked="checked" {% endif %} />
-                  <label for="biaschk">Bias</label>
-                </p>
-                <p>
-                  <input type="checkbox" id="momentochk" name="momento" value="True" {% if momento %} checked="checked" {% endif %} />
-                  <label for="momentochk">Momento (Beta)</label>
-                </p>
-                <br>
+                  <p>
+                    <input type="checkbox" id="biaschk" name="bias" value="True" {% if bias %} checked="checked" {% endif %} disabled="disabled" />
+                    <label for="biaschk">Bias</label>
+                  </p>
+                  <br>
                   <h5 class="light">Função de Transferência:</h5>
-                <p>
-                  <input type="radio" id="ft01" class="with-gap" name="ft" value="SG" {% if ft == 'SG' %} checked="checked" {% endif %} />
-                  <label for="ft01">Sigmóide</label>
-                </p>
-                <p>
-                  <input type="radio" id="ft02" class="with-gap" name="ft" value="TH" {% if ft == 'TH' %} checked="checked" {% endif %} />
-                  <label for="ft02">Tangente Hiperbólica</label>
-                </p>
-                <br>
+                  <p>
+                    <input type="radio" id="ft01" class="with-gap" name="ft" value="SG" {% if ft == 'SG' %} checked="checked" {% endif %} />
+                    <label for="ft01">Sigmóide</label>
+                  </p>
+                  <p>
+                    <input type="radio" id="ft02" class="with-gap" name="ft" value="EL" {% if ft == 'EL' %} checked="checked" {% endif %} disabled="disabled"/>
+                    <label for="ft02">ELU</label>
+                  </p>
+                  <p>
+                    <input type="radio" id="ft03" class="with-gap" name="ft" value="RL" {% if ft == 'RL' %} checked="checked" {% endif %} disabled="disabled"/>
+                    <label for="ft03">ReLU</label>
+                  </p>
+                  <p>
+                    <input type="radio" id="ft04" class="with-gap" name="ft" value="TH" {% if ft == 'TH' %} checked="checked" {% endif %} disabled="disabled"/>
+                    <label for="ft04">Tangente Hiperbólica</label>
+                  </p>
+                  <br>
                   <h5 class="light">Intervalos:</h5>
-                <p>
-                  <input type="radio" id="int01" class="with-gap" name="inter" value="1" {% if inter == "1" %} checked="checked" {% endif %} />
-                  <label for="int01">[0, 1]</label>
-                </p>
-                <p>
-                  <input type="radio" id="int02" class="with-gap" name="inter" value="2" {% if inter == "2" %} checked="checked" {% endif %} />
-                  <label for="int02">[-1, 0]</label>
-                </p>
-                <p>
-                  <input type="radio" id="int03" class="with-gap" name="inter" value="3" {% if inter == "3" %} checked="checked" {% endif %} />
-                  <label for="int03">[-1, 1]</label>
-                </p>
-                <p>
-                  <input type="radio" id="int04" class="with-gap" name="inter" value="4" {% if inter == "4" %} checked="checked" {% endif %} />
-                  <label for="int04">[-0.1, 0.1]</label>
-                </p>
-                <br>
+                  <p>
+                    <input type="radio" id="int01" class="with-gap" name="inter" value="1" {% if inter == "1" %} checked="checked" {% endif %} />
+                    <label for="int01">[0, 1]</label>
+                  </p>
+                  <p>
+                    <input type="radio" id="int02" class="with-gap" name="inter" value="2" {% if inter == "2" %} checked="checked" {% endif %} disabled="disabled"/>
+                    <label for="int02">[-1, 0]</label>
+                  </p>
+                  <p>
+                    <input type="radio" id="int03" class="with-gap" name="inter" value="3" {% if inter == "3" %} checked="checked" {% endif %} disabled="disabled"/>
+                    <label for="int03">[-1, 1]</label>
+                  </p>
+                  <p>
+                    <input type="radio" id="int04" class="with-gap" name="inter" value="4" {% if inter == "4" %} checked="checked" {% endif %} disabled="disabled"/>
+                    <label for="int04">[-0.1, 0.1]</label>
+                  </p>
+                  <br>
+                </div>
+                <div id="col02" class="col s4"></div>
               </div>
-              <div id="col02" class="col s4"></div>
-            </div>
-            <button type="submit" name="submit" class="btn-large waves-effect waves-light blue darken-3">Confirmar
-              <i class="large material-icons right">check</i>
-            </button>
-            <button type="cancel" name="cancel" class="btn-large waves-effect waves-light red darken-3">Cancelar
-              <i class="large material-icons right">clear</i>
-            </button>
-          </form>
+              <button type="submit" name="submit-conf" class="btn-large waves-effect waves-light blue darken-3">Confirmar
+                <i class="large material-icons right">check</i>
+              </button>
+              <button type="cancel" name="cancel" class="btn-large waves-effect waves-light red darken-3">Cancelar
+                <i class="large material-icons right">clear</i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- fim da div de configuracão -->
+
+        <!-- div de treinamento da aplicação -->
+        <!-- início -->
+        <div id="treinamento" class="col s12">
+          <div class="panel-heading">
+            <h3 class="panel-title">Treinamento</h3>
+          </div>
+          <div class="panel-body">
+            <h6 class="light">Página de treinamento da Rede Neural Artificial.</h6>
+            <br>
+            <form action="" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col s3"></div>
+                <div class="input-field col s6">
+                  <input placeholder="Ex.: 100000" name="epoca" id="epoca" type="text" class="validate" required>
+                  <label for="epoca">Quantidade de épocas</label>
+                </div>
+                <div class="col s3"></div>
+              </div>
+              <div class="row">
+                <button type="submit" name="submit-train" class="btn-large waves-effect waves-light blue darken-3">Treinar
+                  <i class="large material-icons right">check</i>
+                </button>
+                <button type="cancel" name="cancel" class="btn-large waves-effect waves-light red darken-3">Cancelar
+                  <i class="large material-icons right">clear</i>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </fieldset>

@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Product, Configs
+from .models import RNA, Neuronio, Erro
 import datetime
 import json
 import numpy as np
 import random
+
 
 def hello_msg():
     hour = datetime.datetime.now().strftime('%H')
@@ -17,10 +18,12 @@ def hello_msg():
 
     return message
 
+
 def str2bool(v):
     if v is None:
         return False
     return v.lower() in ("true", )
+
 
 def home(request):
     message = hello_msg()
@@ -39,14 +42,14 @@ def perguntas(request):
 
 
 def resultados(request):
-    Product.objects.all().delete()
+    RNA.objects.all().delete()
     for n in range(30):
-         p = Product()
-         p.name = "Produto " + str(n)
-         p.price = random.randint(1,30)
-         p.save()
+         r = RNA()
+         r.name = "Produto " + str(n)
+         r.price = random.randint(1,30)
+         r.save()
 
-    queryset = Product.objects.all()
+    queryset = RNA.objects.all()
     names = [obj.name for obj in queryset]
     prices = [int(obj.price) for obj in queryset]
     x = np.random.rand(5)
@@ -65,23 +68,31 @@ def resultados(request):
 
 def configuracoes(request):
     if request.method == 'GET':
-        configs = Configs.objects.get_or_create(pk=1)[0]
+        rna = RNA.objects.get_or_create(pk=1)[0]
         context = {
-            'bias': configs.bias,
-            'momento': configs.momento,
-            'ft': configs.funcao_transferencia,
-            'inter': configs.intervalo,
+            'bias': rna.bias,
+            'ft': rna.funcao_transferencia,
+            'inter': rna.intervalo,
         }
         return render(request, 'app/configuracoes.html', context)
     if request.method == 'POST':
         if "cancel" in request.POST:
             return redirect('home')
         else:
-            #update configs
-            configs = Configs.objects.get_or_create(id=1)[0]
-            configs.bias = str2bool(request.POST.get("bias"))
-            configs.momento = str2bool(request.POST.get("momento"))
-            configs.funcao_transferencia = request.POST.get("ft")
-            configs.intervalo = request.POST.get("inter")
-            configs.save()
+            if 'submit-conf' in request.POST:
+                #update configs
+                neuronios = Neuronio.objects.all().delete()
+                rna = RNA.objects.get_or_create(id=1)[0]
+                rna.bias = str2bool(request.POST.get("bias"))
+                rna.funcao_transferencia = request.POST.get("ft")
+                rna.intervalo = request.POST.get("inter")
+                rna.save()
+            if 'submit-train' in request.POST:
+                #update no valor da epoca, usando abs()
+                #executar funcao de treino
+                rna = RNA.objects.get_or_create(id=1)[0]
+                rna.epoca = int(request.POST.get('epoca'))
+                rna.save()
+
+                rna.treinar()
             return redirect('home')
