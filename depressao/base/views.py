@@ -4,6 +4,7 @@ import datetime
 import json
 import numpy as np
 import random
+import io
 
 
 def hello_msg():
@@ -37,32 +38,36 @@ def home(request):
 def perguntas(request):
     error = False
     if request.method == 'POST':
+        rna = RNA.objects.get_or_create(id=1)[0]
+        rna.executar()
         return redirect('resultados')
-    return render(request, 'app/perguntas.html', {'error': error})
+    return render(request, 'app/perguntas.html')
 
 
 def resultados(request):
-    RNA.objects.all().delete()
-    for n in range(30):
-         r = RNA()
-         r.name = "Produto " + str(n)
-         r.price = random.randint(1,30)
-         r.save()
+    if request.method == 'GET':
+        # qs = Erro.objects.all()
+        # for e in qs:
+        #     memfile = io.BytesIO()
+        #     memfile.write(json.loads(e.valores).encode('latin-1'))
+        #     memfile.seek(0)
+        #     erro = np.load(memfile)
 
-    queryset = RNA.objects.all()
-    names = [obj.name for obj in queryset]
-    prices = [int(obj.price) for obj in queryset]
-    x = np.random.rand(5)
-    y = np.random.rand(5)
-    index = [i for i in range(5)]
+        #     import ipdb
+        #     ipdb.set_trace()
+        #     pass
 
-    context = {
-        'names': json.dumps(names),
-        'prices': json.dumps(prices),
-        'x': json.dumps(x.tolist()),
-        'y': json.dumps(y.tolist()),
-        'index': json.dumps(index),
-    }
+        # i = [i for i in range(qs.count())]
+        x = np.random.rand(5)
+        y = np.random.rand(5)
+        index = [i for i in range(5)]
+
+        context = {
+
+            'x': json.dumps(x.tolist()),
+            'y': json.dumps(y.tolist()),
+            'index': json.dumps(index),
+        }
     return render(request, 'app/resultados.html', context)
 
 
@@ -88,11 +93,9 @@ def configuracoes(request):
                 rna.intervalo = request.POST.get("inter")
                 rna.save()
             if 'submit-train' in request.POST:
-                #update no valor da epoca, usando abs()
-                #executar funcao de treino
                 rna = RNA.objects.get_or_create(id=1)[0]
-                rna.epoca = int(request.POST.get('epoca'))
+                rna.epoca = abs(int(request.POST.get('epoca')))
                 rna.save()
 
-                rna.treinar()
+                rna.executar(testar=True)
             return redirect('home')

@@ -24,16 +24,16 @@
             <h3 class="panel-title">Gráficos</h3>
           </div>
           <div class="panel-body">
-            <div class="row">
-              <h5 class="light">Gráfico gerado a partir de valores de uma model:</h5>
-              <div id="chart-01-01" class="col s3"></div>
-              <div id="chart-01" class="col s6">
-                <canvas id="modelChart" width="100" height="100"></canvas>
-              </div>
-              <div id="chart-01-02" class="col s3"></div>
-            </div>
+            <!-- <div class="row"> -->
+            <!--   <h5 class="light">Gráfico gerado a partir de valores de uma model:</h5> -->
+            <!--   <div id="chart-01-01" class="col s3"></div> -->
+            <!--   <div id="chart-01" class="col s6"> -->
+            <!--     <canvas id="modelChart" width="100" height="100"></canvas> -->
+            <!--   </div> -->
+            <!--   <div id="chart-01-02" class="col s3"></div> -->
+            <!-- </div> -->
 
-            <br>
+            <!-- <br> -->
 
             <div class="row">
               <h5 class="light">Em seguida, o gráfico feito de um numpy array:</h5>
@@ -52,36 +52,35 @@
 {% endblock %}
 
 {% block scripts %}
-  <script>
-    var ctx = document.getElementById("modelChart");
-
-              var names = JSON.parse('{{ names|safe }}');
-              var prices = JSON.parse('{{ prices|safe }}');
-
-              var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                  labels: names,
-                  datasets: [{
-                    label: 'Preço',
-                    data: prices,
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 29, 62)',
-                    fill: false,
-                    borderWidth: 1
-                  }]
-                },
-                options: {
-                  scales: {
-                    yAxes: [{
-                      ticks: {
-                        beginAtZero:true
-                      }
-                    }]
-                  }
-                }
-              });
-  </script>
+//  <script>
+//    var ctx = document.getElementById("modelChart");
+//              var names = JSON.parse('{{ names|safe }}');
+//              var prices = JSON.parse('{{ prices|safe }}');
+//
+//              var myChart = new Chart(ctx, {
+//                type: 'line',
+//                data: {
+//                  labels: names,
+//                  datasets: [{
+//                    label: 'Preço',
+//                    data: prices,
+//                    backgroundColor: 'rgb(255, 99, 132)',
+//                    borderColor: 'rgb(255, 29, 62)',
+//                    fill: false,
+//                    borderWidth: 1
+//                  }]
+//                },
+//                options: {
+//                  scales: {
+//                    yAxes: [{
+//                      ticks: {
+//                        beginAtZero:true
+//                      }
+//                    }]
+//                  }
+//                }
+//              });
+//  </script>
 
   <script>
     var ctx1 = document.getElementById("numpyChart");
